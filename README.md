@@ -19,8 +19,8 @@ My personal configuration to use Obsidian inside Neovim
 - which-key.nvim
 - conform.nvim
 - nvim-treesitter
+- nvim-cmp (and autocomplete in general)
 
 ### To add
 
-- nvim-cmp (and autocomplete in general)
 - obsidian.nvim
