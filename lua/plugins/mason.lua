@@ -38,7 +38,8 @@ return {
 	    lint.linters.markdownlint.args = {
 		'--disable', 
 		-- Add rules here
-		'MD041',
+		'MD041', -- should start with top level header
+		'MD013', -- line too long
 		'--' -- Required
 	    }
 	    -- Hide virtual text for makdownlint for all but errors
