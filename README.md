@@ -20,7 +20,12 @@ My personal configuration to use Obsidian inside Neovim
 - conform.nvim
 - nvim-treesitter
 - nvim-cmp (and autocomplete in general)
+- obsidian.nvim
 
 ### To add
 
-- obsidian.nvim
+-  a plugin to center the view (zen mode or something similar)
+
+## To do
+
+Finish configuring obsidian.nvim
