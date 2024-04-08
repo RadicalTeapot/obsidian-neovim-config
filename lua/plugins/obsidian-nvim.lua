@@ -5,10 +5,15 @@ local get_PARA_metadata = function(relative_note_path)
 
     local type_name = parents[#parents-1]
     if type_name == nil then return nil end
+
+    -- Match against PARA types
+    type_name = string.lower(tostring(type_name["stem"]))
+    local types = {project="project", area="area", resource="resource", archive="archive"}
+    if types[type_name] == nil then return nil end
+
     local type_value = parents[#parents-2]
     if type_value == nil then return nil end
 
-    type_name = string.lower(tostring(type_name["stem"]))
     type_value = tostring(type_value["stem"])
 
     return {name=type_name, value=type_value}
@@ -39,7 +44,6 @@ return {
 	completion = { nvim_cmp = true, min_chars = 2 },
 	-- TODO Override mappings
 
-	-- TODO Customize frontmatter
 	note_frontmatter_func = function(note) 
 	    local client = require('obsidian').get_client()
 	    local workspace = client.current_workspace
@@ -61,7 +65,6 @@ return {
 
 	    return out
 	end, 
-	-- disable_frontmatter = true,
     }
 }
 

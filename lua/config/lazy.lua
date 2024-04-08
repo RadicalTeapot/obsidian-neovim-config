@@ -26,3 +26,4 @@ require("lazy").setup(
   colorscheme = { "catppuccin", "habamax" },
   checker = { enabled = true, notify = false },
 })
+vim.cmd("colorscheme catppuccin")
