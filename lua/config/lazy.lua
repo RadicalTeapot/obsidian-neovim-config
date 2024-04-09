@@ -27,5 +27,12 @@ require("lazy").setup({
     defaults = { lazy = true, version = false },
     colorscheme = { "catppuccin", "habamax" },
     checker = { enabled = true, notify = false },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "netrwPlugin",
+            }
+        }
+    }
 })
 vim.cmd("colorscheme catppuccin")

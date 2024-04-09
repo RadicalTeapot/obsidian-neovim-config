@@ -2,7 +2,10 @@ local personal_config = vim.fs.normalize("$localappdata/_nvim_personal_config/pe
 if (vim.uv or vim.loop).fs_stat(personal_config) then
     return {
         dir = personal_config,
-        opts = {},
+        opts = {
+            statusline = false,
+            keymaps = true,
+        },
         priority = 999,
         lazy = false,
     }
