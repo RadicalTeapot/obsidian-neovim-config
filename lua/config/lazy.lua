@@ -23,6 +23,7 @@ require("lazy").setup({
     spec = {
         { import = "lsp" },
         { import = "plugins" },
+        { import = "ui" },
     },
     defaults = { lazy = true, version = false },
     colorscheme = { "catppuccin", "habamax" },
