@@ -1,4 +1,5 @@
-local vaultPath = vim.fn.expand("$data/Obsidian vaults/Personal vault")
+local vaultPath = vim.fn.expand([[$data/Obsidian vaults/Personal vault]])
+local notesPath = vim.fs.normalize(vaultPath .. [[/**.md]])
 
 local get_PARA_metadata = function(relative_note_path)
     local parents = relative_note_path:parents()
@@ -29,18 +30,17 @@ return {
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
-    ft = "markdown", -- use filtype for now
-    -- event = {
-    --     "BufReadPre "..vaultPath,
-    --     "BufNewFile "..vaultPath,
-    -- },
+    event = {
+        "BufReadPre " .. notesPath,
+        "BufNewFile " .. notesPath,
+    },
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
         "nvim-lua/plenary.nvim",
     },
     opts = {
-        workspaces = { { name = "vault", path = vaultPath }, { name = "test", path = [[C:\tmp\Personal vault]] } },
+        workspaces = { { name = "vault", path = vaultPath } },
         daily_notes = {
             folder = "Periodic notes/daily",
             date_format = "%Y-%m-%d",
@@ -69,6 +69,13 @@ return {
                 for k, v in pairs(note.metadata) do
                     out[k] = v
                 end
+            end
+
+            if note.aliases ~= nil and #note.aliases > 0 then
+                out["aliases"] = note.aliases
+            end
+            if note.tags ~= nil and #note.tags > 0 then
+                out["tags"] = note.tags
             end
 
             return out

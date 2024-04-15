@@ -18,8 +18,9 @@ return {
         lint.linters.markdownlint.args = {
             "--disable",
             -- Add rules here
-            "MD041", -- should start with top level header
             "MD013", -- line too long
+            "MD028", -- No blank line in blockquotes
+            "MD041", -- should start with top level header
             "--", -- Required
         }
 
