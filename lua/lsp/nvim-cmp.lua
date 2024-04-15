@@ -47,7 +47,8 @@ return {
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                     ["<esc>"] = cmp.mapping.abort(), -- close completion window
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Insert selected one, set to false to only insert specifically picked one
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Insert selected one, set to false to only insert specifically picked one
+                    ["<Tab>"] = cmp.mapping.confirm({ select = false }), -- Insert selected one, set to false to only insert specifically picked one
                 }),
                 -- Set autocompletion sources
                 sources = cmp.config.sources({
