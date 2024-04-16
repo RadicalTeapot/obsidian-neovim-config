@@ -1,5 +1,7 @@
 local settings_stack = {
+    --- @type { key: { type: string, option: string }, overriden_value: any, current_value: any }[]
     _stack = {},
+    _index = 0,
 }
 
 --- Push overriden settings onto the settings stack
@@ -15,22 +17,25 @@ settings_stack.push = function(opts)
     end
 
     -- Push settings onto stack
-    settings_stack._stack[#settings_stack + 1] = overriden_settings
+    settings_stack._index = settings_stack._index + 1
+    settings_stack._stack[settings_stack._index] = overriden_settings
 end
 
 --- Pop overriden settings off the settings stack and apply them
 --- @see settings_stack.push
 settings_stack.pop_and_apply = function()
-    assert(settings_stack._stack[#settings_stack] ~= nil, "Settings stack underflow")
+    assert(settings_stack._index > 0, "Settings stack underflow")
 
     -- Pop settings off stack
-    local last_settings = settings_stack._stack[#settings_stack]
-    settings_stack._stack[#settings_stack] = nil
+    local last_settings = settings_stack._stack[settings_stack._index]
+    settings_stack._index = settings_stack._index - 1
 
     if last_settings ~= nil then
         for _, v in ipairs(last_settings) do
             vim[v.key.type][v.key.option] = v.current_value
         end
+    else
+        vim.notify("Settings stack last value is nil", vim.log.levels.WARN)
     end
 end
 

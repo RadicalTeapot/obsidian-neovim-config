@@ -6,4 +6,4 @@ vim.wo.wrap = true
 vim.wo.linebreak = true
 vim.wo.breakindent = true
 vim.bo.textwidth = 120
-vim.wo.colorcolumn = "+0"
+vim.bo.shiftwidth = 2
